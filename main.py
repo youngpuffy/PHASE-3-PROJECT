@@ -66,12 +66,33 @@ def main():
                 print("Invalid user ID.")
 
         elif choice == "5":
-            username = input("Enter username to view: ").strip()
-            user = get_user_by_username(username)
-            if user:
-                print(f"User ID: {user.id}, Username: {user.username}")
+            print("\n View user")
+            print("1. View specific user by username")
+            print("2. view all users")
+            sub_choice = input("choose option: ").strip()
+
+            if sub_choice == "1":
+                username = input("Enter username to view: ").strip()
+                user = get_user_by_username(username)
+
+                if user:
+                    print(f"User ID: {user.id}, Username: {user.username}")
+                else:
+                    print("User not found.")
+
+            elif sub_choice == "2":
+                from lib.scripts.run_scripts import get_all_users
+                users = get_all_users
+                if users:
+                    print("All registered users:")
+                    for user in users:
+                        print(f"- ID: {user.id}, Username: {user.username}")
+
+                else:
+                    print(" No users found.")
+
             else:
-                print("User not found.")
+                print("Invalid sub-option.")
 
         elif choice == "6":
             user_id = input("Enter user ID to delete: ").strip()
