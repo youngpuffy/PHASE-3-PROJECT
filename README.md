@@ -20,12 +20,26 @@
 ├── Pipfile.lock                # Locked versions of dependencies
 └── README.md                   # This file
 
-## Features
+## Features(cli options)
 - creates user account with unique usernames
 - user-related payment tracking
 - able to start and track active WIFI sessions
 - fetching active session for any user.
+- update a user active session and also stop
+- able to delete and view users
 
+ when you run the app 
+ === WiFi Management CLI ===
+1. Create User
+2. Make Payment
+3. start wifi session
+4. View Active Sessions
+5. View User
+6. Delete User
+7. Update User Session Duration
+8. Stop Session
+9. Exit
+Enter choice: 
 
 ## Requirements 
 - python 3.8+
