@@ -60,3 +60,39 @@ def get_active_session_for_user(user_id):
     rows = cursor.fetchall()
     conn.close()
     return [WifiSession(*row) for row in rows]
+
+def delete_user(user_id):
+    conn = get_connection()
+    cursor = conn.cursor()
+    try:
+        cursor.execute("DELETE FROM users WHERE id = ?", (user_id,))
+        conn.commit()
+        return cursor.rowcount > 0
+    finally:
+        conn.close()
+
+def update_user_session(session_id, new_duration):
+    conn = get_connection()
+    cursor = conn.cursor()
+    try:
+        cursor.execute(
+            "UPDATE wifi_sessions SET duration_minutes = ? WHERE id = ?", 
+            (new_duration, session_id)
+        )
+        conn.commit()
+        return cursor.rowcount > 0
+    finally:
+        conn.close()
+
+def stop_session(session_id):
+    conn = get_connection()
+    cursor = conn.cursor()
+    try:
+        cursor.execute(
+            "UPDATE wifi_sessions SET status = 'stopped' WHERE id = ? AND status = 'active'", 
+            (session_id,)
+        )
+        conn.commit()
+        return cursor.rowcount > 0
+    finally:
+        conn.close()
