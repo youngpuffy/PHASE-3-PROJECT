@@ -96,3 +96,11 @@ def stop_session(session_id):
         return cursor.rowcount > 0
     finally:
         conn.close()
+
+def get_all_users():
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT id, username, password FROM users")
+    rows = cursor.fetchall()
+    conn.close()
+    return [User(*row) for row in rows]

@@ -82,7 +82,7 @@ def main():
 
             elif sub_choice == "2":
                 from lib.scripts.run_scripts import get_all_users
-                users = get_all_users
+                users = get_all_users()
                 if users:
                     print("All registered users:")
                     for user in users:
